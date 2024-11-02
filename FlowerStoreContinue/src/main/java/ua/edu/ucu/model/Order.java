@@ -1,36 +1,46 @@
-package ua.edu.ucu;
+package ua.edu.ucu.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import lombok.Setter;
+import ua.edu.ucu.delivery.Delivery;
+import ua.edu.ucu.payment.Payment;
+
+
+import java.util.LinkedList;
 
 public class Order {
-    private List<Item> items;
+    private LinkedList<Item> items;
+    @Setter
+    private Payment paymentStrategy;
+    @Setter
+    private Delivery deliveryStrategy;
 
-    public Order() {
-        items = new ArrayList<>();
+    public double calculateTotalPrice() {
+        double ans = 0;
+        for (Item item : items) {
+            ans += item.price();
+        }
+        return ans;
+    }
+
+    public boolean processOrder() {
+        if (paymentStrategy.getIsFullyPayed()) {
+            System.out.println("Starting delivery ...");
+            deliveryStrategy.deliver(items);
+            return true;
+        } else {
+            System.out.println("You have to pay for order before "
+                    + "we can deliver it to you");
+            return false;
+        }
     }
 
     public void addItem(Item item) {
         items.add(item);
+        paymentStrategy.setPrice(calculateTotalPrice());
     }
 
-    public double calculateTotal() {
-        double total = 0;
-        for (Item item : items) {
-            total += item.getPrice();
-        }
-        return total;
-    }
-
-    public List<Item> getItems() {
-        return items;
-    }
-
-    @Override
-    public String toString() {
-        return "Order{" +
-                "items=" + items +
-                '}';
+    public void removeItem(Item item) {
+        items.remove(item);
+        paymentStrategy.setPrice(calculateTotalPrice());
     }
 }
-

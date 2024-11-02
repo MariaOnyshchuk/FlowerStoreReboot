@@ -1,2 +1,7 @@
-package ua.edu.ucu.payment;public class Payment {
+package ua.edu.ucu.payment;
+
+public interface Payment {
+    void setPrice(double price);
+    boolean getIsFullyPayed();
+    void pay(double price);
 }

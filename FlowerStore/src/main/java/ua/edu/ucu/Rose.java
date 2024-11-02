@@ -1,2 +1,3 @@
-package ua.edu.ucu;public class Rose {
-}
+package ua.edu.ucu;
+
+public class Rose extends Flower{}

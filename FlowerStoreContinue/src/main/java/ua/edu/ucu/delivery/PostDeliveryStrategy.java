@@ -1,9 +1,7 @@
 package ua.edu.ucu.delivery;
-
-
 import ua.edu.ucu.model.Item;
-
 import java.util.List;
+
 
 public class PostDeliveryStrategy implements Delivery {
     @Override

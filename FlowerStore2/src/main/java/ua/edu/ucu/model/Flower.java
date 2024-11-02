@@ -2,17 +2,21 @@ package ua.edu.ucu.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "Flowers")
+@NoArgsConstructor
 public class Flower {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private FlowerType flowerType;
+
+
 
 
     public Flower(Flower flower){

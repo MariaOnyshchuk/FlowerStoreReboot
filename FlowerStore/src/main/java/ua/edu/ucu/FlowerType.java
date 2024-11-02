@@ -1,2 +1,5 @@
-package ua.edu.ucu;public class FlowerType {
+package ua.edu.ucu;
+
+public enum FlowerType {
+    ROSE, TULIP, CAMOMILE;
 }
